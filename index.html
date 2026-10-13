@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Fouogue Douanla Gabriela — Développeuse Full Stack Junior</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --noir:#111110;
+  --blanc:#FAFAF8;
+  --surface:#F3F1EC;
+  --surface2:#ECEAE3;
+  --accent:#BF4B1F;
+  --accent-doux:#F0E8E3;
+  --texte-doux:#6B6860;
+  --bordure:#DDDBD3;
+  --blanc-pur:#FFFFFF;
+  --police:'Plus Jakarta Sans',sans-serif;
+  --rayon:6px;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--police);background:var(--blanc);color:var(--noir);font-size:15px;line-height:1.7;overflow-x:hidden}
+
+/* ─── NAVIGATION ─── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1rem 3.5rem;
+  background:rgba(250,250,248,0.92);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--bordure);
+}
+.logo{font-size:1rem;font-weight:800;letter-spacing:-0.01em;color:var(--noir);text-decoration:none}
+.logo span{color:var(--accent)}
+.nav-liens{display:flex;gap:2.2rem;list-style:none}
+.nav-liens a{font-size:0.8rem;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;color:var(--texte-doux);text-decoration:none;transition:color .2s}
+.nav-liens a:hover{color:var(--accent)}
+.nav-bouton{
+  font-size:0.78rem;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;
+  padding:0.55rem 1.3rem;background:var(--noir);color:var(--blanc);
+  border:none;border-radius:var(--rayon);text-decoration:none;transition:background .2s;
+}
+.nav-bouton:hover{background:var(--accent)}
+
+/* ─── ACCUEIL ─── */
+#accueil{
+  min-height:100vh;padding-top:5rem;
+  display:flex;align-items:center;
+  background:var(--blanc);
+}
+.accueil-inner{
+  width:100%;max-width:1200px;margin:0 auto;
+  padding:4rem 3.5rem;
+  display:grid;grid-template-columns:1fr 400px;gap:5rem;align-items:center;
+}
+.accueil-texte{}
+.etiquette{
+  display:inline-flex;align-items:center;gap:0.6rem;
+  font-size:0.72rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:1.8rem;
+}
+.etiquette::before{content:'';width:1.8rem;height:1.5px;background:var(--accent)}
+.accueil-nom{
+  font-size:clamp(2.4rem,4.5vw,4rem);
+  font-weight:800;line-height:1.05;letter-spacing:-0.03em;
+  color:var(--noir);margin-bottom:0.6rem;
+}
+.accueil-nom em{color:var(--accent);font-style:normal}
+.accueil-titre{
+  font-size:clamp(1rem,1.8vw,1.25rem);
+  font-weight:500;color:var(--texte-doux);
+  margin-bottom:1.8rem;letter-spacing:-0.01em;
+}
+.accueil-accroche{
+  font-size:1rem;font-weight:400;color:var(--noir);opacity:0.72;
+  max-width:42ch;line-height:1.75;
+  margin-bottom:2.2rem;
+  padding-left:1rem;border-left:2px solid var(--accent);
+}
+.accueil-objectif{
+  font-size:0.88rem;font-weight:400;color:var(--texte-doux);
+  max-width:44ch;line-height:1.7;margin-bottom:2.5rem;
+}
+.accueil-objectif strong{color:var(--noir);font-weight:600}
+.boutons{display:flex;gap:1rem;flex-wrap:wrap}
+.btn-plein{
+  font-size:0.78rem;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;
+  padding:0.75rem 1.8rem;background:var(--noir);color:var(--blanc);
+  border:2px solid var(--noir);border-radius:var(--rayon);text-decoration:none;
+  transition:all .2s;display:inline-block;
+}
+.btn-plein:hover{background:var(--accent);border-color:var(--accent)}
+.btn-vide{
+  font-size:0.78rem;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;
+  padding:0.75rem 1.8rem;background:transparent;color:var(--noir);
+  border:2px solid var(--bordure);border-radius:var(--rayon);text-decoration:none;
+  transition:all .2s;display:inline-block;
+}
+.btn-vide:hover{border-color:var(--noir)}
+
+/* photo côté droit */
+.accueil-photo-bloc{display:flex;flex-direction:column;align-items:center;gap:1.2rem}
+.photo-cadre{
+  width:340px;height:400px;
+  border-radius:12px;overflow:hidden;
+  border:1px solid var(--bordure);
+  background:var(--surface);
+  display:flex;align-items:center;justify-content:center;
+  flex-direction:column;gap:0.8rem;
+  position:relative;
+}
+.photo-cadre img{width:100%;height:100%;object-fit:cover;display:block}
+.photo-placeholder{
+  width:80px;height:80px;border-radius:50%;
+  background:var(--bordure);
+  display:flex;align-items:center;justify-content:center;
+  font-size:2rem;color:var(--texte-doux);
+}
+.photo-hint{font-size:0.75rem;color:var(--texte-doux);text-align:center;max-width:18ch;line-height:1.5}
+.photo-badge{
+  background:var(--noir);color:var(--blanc);
+  font-size:0.72rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;
+  padding:0.5rem 1.2rem;border-radius:2rem;
+  display:flex;align-items:center;gap:0.5rem;
+}
+.point-vert{width:6px;height:6px;border-radius:50%;background:#4CAF50;animation:clignoter 2s ease-in-out infinite}
+@keyframes clignoter{0%,100%{opacity:1}50%{opacity:0.3}}
+
+/* ─── SECTION COMMUNE ─── */
+.section{padding:5rem 3.5rem;max-width:1200px;margin:0 auto}
+.section-full{padding:5rem 0}
+.section-full .section-inner{max-width:1200px;margin:0 auto;padding:0 3.5rem}
+.etiquette-section{
+  font-size:0.7rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;
+  color:var(--accent);display:flex;align-items:center;gap:0.6rem;margin-bottom:0.8rem;
+}
+.etiquette-section::after{content:'';width:2rem;height:1px;background:var(--bordure)}
+.titre-section{
+  font-size:clamp(1.6rem,3vw,2.4rem);font-weight:800;
+  letter-spacing:-0.025em;line-height:1.1;
+  color:var(--noir);margin-bottom:1rem;
+}
+.sous-titre-section{
+  font-size:0.95rem;font-weight:400;color:var(--texte-doux);
+  max-width:54ch;line-height:1.7;margin-bottom:2.5rem;
+}
+
+/* ─── À PROPOS ─── */
+#apropos{background:var(--blanc-pur);padding:5rem 0}
+#apropos .section-inner{max-width:1200px;margin:0 auto;padding:0 3.5rem}
+.apropos-grille{display:grid;grid-template-columns:1.1fr 0.9fr;gap:5rem;align-items:start}
+.apropos-texte p{
+  font-size:0.97rem;font-weight:400;color:var(--noir);opacity:0.78;
+  line-height:1.8;margin-bottom:1rem;
+}
+.apropos-liste{list-style:none;margin:1.5rem 0}
+.apropos-liste li{
+  display:flex;align-items:flex-start;gap:0.7rem;
+  font-size:0.9rem;font-weight:400;color:var(--noir);
+  padding:0.5rem 0;border-bottom:1px solid var(--surface);
+}
+.apropos-liste li:last-child{border-bottom:none}
+.apropos-liste li::before{content:'→';color:var(--accent);font-weight:700;flex-shrink:0;margin-top:0.05rem}
+.apropos-cote{display:flex;flex-direction:column;gap:1rem}
+.info-carte{
+  background:var(--surface);border-radius:8px;padding:1.3rem 1.5rem;
+  display:flex;align-items:center;gap:1rem;
+}
+.info-icone{
+  width:42px;height:42px;border-radius:8px;background:var(--noir);
+  display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;
+}
+.info-libelle{font-size:0.7rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--texte-doux);margin-bottom:0.2rem}
+.info-valeur{font-size:0.95rem;font-weight:700;color:var(--noir)}
+
+/* ─── STACK TECHNIQUE ─── */
+#stack{background:var(--surface)}
+.stack-grille{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:1px;
+  background:var(--bordure);
+  border:1px solid var(--bordure);
+  border-radius:10px;overflow:hidden;
+  margin-top:2.5rem;
+}
+.stack-colonne{
+  background:var(--blanc-pur);
+  padding:1.8rem 1.5rem;
+}
+.stack-colonne-titre{
+  font-size:0.68rem;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:1.2rem;padding-bottom:0.8rem;
+  border-bottom:1.5px solid var(--accent-doux);
+}
+.tech-liste{display:flex;flex-direction:column;gap:0.5rem}
+.tech-item{
+  display:flex;align-items:center;gap:0.6rem;
+  font-size:0.85rem;font-weight:500;color:var(--noir);
+  padding:0.45rem 0.7rem;
+  border-radius:var(--rayon);
+  background:var(--surface);
+  border:1px solid transparent;
+  transition:all .2s;cursor:default;
+}
+.tech-item:hover{background:var(--noir);color:var(--blanc);border-color:var(--noir)}
+.tech-puce{
+  width:6px;height:6px;border-radius:50%;background:var(--bordure);flex-shrink:0;
+  transition:background .2s;
+}
+.tech-item:hover .tech-puce{background:var(--accent)}
+.tech-item.principal .tech-puce{background:var(--accent)}
+
+/* ─── PROJETS ─── */
+#projets{background:var(--blanc-pur)}
+.projets-grille{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.5rem;margin-top:2.5rem}
+.projet-carte{
+  border:1px solid var(--bordure);border-radius:10px;overflow:hidden;
+  background:var(--blanc-pur);transition:transform .2s,box-shadow .2s;
+}
+.projet-carte:hover{transform:translateY(-5px);box-shadow:0 16px 40px rgba(0,0,0,0.07)}
+.projet-en-tete{
+  padding:1.5rem 1.8rem 1rem;
+  background:var(--surface);
+  border-bottom:1px solid var(--bordure);
+  display:flex;justify-content:space-between;align-items:flex-start;
+}
+.projet-numero{font-size:2rem;font-weight:800;color:var(--bordure);line-height:1;font-family:var(--police)}
+.projet-technos{display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:0.5rem}
+.techno-badge{
+  font-size:0.7rem;font-weight:700;letter-spacing:0.03em;
+  padding:0.25rem 0.65rem;border-radius:2rem;
+  background:var(--noir);color:var(--blanc);
+}
+.techno-badge.secondaire{background:var(--accent);color:#fff}
+.projet-corps{padding:1.5rem 1.8rem}
+.projet-nom{font-size:1rem;font-weight:700;color:var(--noir);margin-bottom:0.4rem}
+.projet-desc{font-size:0.85rem;color:var(--texte-doux);line-height:1.65;margin-bottom:1rem}
+.projet-taches{list-style:none;margin-bottom:1.2rem}
+.projet-taches li{
+  font-size:0.82rem;color:var(--noir);
+  padding:0.3rem 0;border-bottom:1px solid var(--surface);
+  display:flex;gap:0.5rem;
+}
+.projet-taches li::before{content:'›';color:var(--accent);font-weight:700}
+.projet-taches li:last-child{border-bottom:none}
+.projet-liens{display:flex;gap:0.6rem}
+.lien-btn{
+  font-size:0.75rem;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;
+  padding:0.4rem 0.9rem;border:1.5px solid var(--bordure);border-radius:var(--rayon);
+  color:var(--noir);text-decoration:none;transition:all .2s;
+}
+.lien-btn:hover{background:var(--noir);color:var(--blanc);border-color:var(--noir)}
+
+/* ─── APPLICATIONS ─── */
+#applications{background:var(--surface)}
+.apps-grille{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;margin-top:2.5rem}
+.app-carte{
+  background:var(--blanc-pur);border:1px solid var(--bordure);border-radius:10px;
+  padding:1.5rem;transition:all .2s;
+}
+.app-carte:hover{border-color:var(--accent);transform:translateY(-3px)}
+.app-icone{
+  width:44px;height:44px;border-radius:10px;background:var(--noir);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.2rem;margin-bottom:1rem;
+}
+.app-nom{font-size:0.92rem;font-weight:700;color:var(--noir);margin-bottom:0.4rem}
+.app-desc{font-size:0.82rem;color:var(--texte-doux);line-height:1.6;margin-bottom:0.8rem}
+.app-techno{font-size:0.7rem;font-weight:600;letter-spacing:0.04em;color:var(--accent)}
+
+/* ─── DIPLÔMES ─── */
+#diplomes{background:var(--noir);color:var(--blanc)}
+#diplomes .section-inner{max-width:1200px;margin:0 auto;padding:5rem 3.5rem}
+#diplomes .etiquette-section{color:var(--accent)}
+#diplomes .etiquette-section::after{background:rgba(255,255,255,0.12)}
+#diplomes .titre-section{color:var(--blanc)}
+#diplomes .sous-titre-section{color:rgba(255,255,255,0.5)}
+.diplomes-grille{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2.5rem}
+.diplome-carte{
+  padding:1.8rem;
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:10px;
+  background:rgba(255,255,255,0.03);
+  transition:border-color .2s;
+}
+.diplome-carte:hover{border-color:rgba(201,84,30,0.4)}
+.diplome-annee{
+  font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:0.6rem;
+}
+.diplome-titre{font-size:1rem;font-weight:700;color:var(--blanc);margin-bottom:0.3rem}
+.diplome-etablissement{font-size:0.85rem;color:rgba(255,255,255,0.45)}
+.diplome-detail{
+  font-size:0.8rem;color:rgba(255,255,255,0.35);
+  margin-top:0.6rem;font-style:italic;
+}
+
+/* ─── CERTIFICATIONS ─── */
+#certifications{background:var(--blanc-pur)}
+.certif-grille{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;margin-top:2.5rem}
+.certif-carte{
+  border:1px solid var(--bordure);border-radius:10px;padding:1.5rem;
+  background:var(--blanc-pur);transition:all .2s;
+  display:flex;flex-direction:column;gap:0.8rem;
+}
+.certif-carte:hover{border-color:var(--accent)}
+.certif-organisme{
+  font-size:0.68rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--texte-doux);
+}
+.certif-nom{font-size:0.95rem;font-weight:700;color:var(--noir)}
+.certif-statut{
+  display:inline-flex;align-items:center;gap:0.4rem;
+  font-size:0.7rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;
+  padding:0.3rem 0.8rem;border-radius:2rem;width:fit-content;
+}
+.statut-encours{background:#FFF3E0;color:#BF6000}
+.statut-obtenu{background:#E8F5E9;color:#2E7D32}
+.certif-desc{font-size:0.8rem;color:var(--texte-doux);line-height:1.6}
+
+/* ─── EXPÉRIENCE ─── */
+#experience{background:var(--surface)}
+.xp-liste{margin-top:2.5rem;display:flex;flex-direction:column;gap:1rem}
+.xp-carte{
+  background:var(--blanc-pur);border:1px solid var(--bordure);border-radius:10px;
+  padding:1.8rem 2rem;display:grid;grid-template-columns:200px 1fr;gap:2rem;
+  transition:border-color .2s;
+}
+.xp-carte:hover{border-color:var(--accent)}
+.xp-meta{}
+.xp-org{font-size:0.72rem;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent);margin-bottom:0.3rem}
+.xp-periode{font-size:0.8rem;color:var(--texte-doux);font-weight:400}
+.xp-corps{}
+.xp-poste{font-size:1rem;font-weight:700;color:var(--noir);margin-bottom:0.8rem}
+.xp-taches{list-style:none;display:flex;flex-direction:column;gap:0.35rem}
+.xp-taches li{font-size:0.85rem;color:var(--noir);opacity:0.75;display:flex;gap:0.6rem}
+.xp-taches li::before{content:'·';color:var(--accent);font-weight:700;flex-shrink:0}
+
+/* ─── CONTACT ─── */
+#contact{background:var(--blanc-pur)}
+.contact-grille{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+.contact-grand{
+  font-size:clamp(2rem,4.5vw,3.4rem);font-weight:800;
+  letter-spacing:-0.025em;line-height:1.1;
+  color:var(--noir);margin-bottom:1rem;
+}
+.contact-grand em{color:var(--accent);font-style:normal}
+.contact-sous{font-size:0.95rem;color:var(--texte-doux);font-weight:400;max-width:36ch;line-height:1.7;margin-bottom:2rem}
+.contact-liens{display:flex;flex-direction:column;gap:0.75rem}
+.contact-element{
+  display:flex;align-items:center;gap:1rem;
+  padding:0.9rem 1.1rem;
+  background:var(--surface);border:1px solid var(--bordure);border-radius:8px;
+  text-decoration:none;color:var(--noir);transition:all .2s;
+}
+.contact-element:hover{border-color:var(--accent);background:var(--accent);color:#fff}
+.contact-element:hover .contact-icone{background:rgba(255,255,255,0.2)}
+.contact-icone{
+  width:38px;height:38px;border-radius:6px;background:var(--blanc-pur);
+  display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;transition:background .2s;
+}
+.contact-libelle{font-size:0.68rem;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;opacity:0.5;display:block}
+.contact-valeur{font-size:0.88rem;font-weight:600}
+/* formulaire */
+.formulaire{display:flex;flex-direction:column;gap:0.9rem}
+.form-rang{display:grid;grid-template-columns:1fr 1fr;gap:0.9rem}
+.form-groupe{display:flex;flex-direction:column;gap:0.35rem}
+.form-libelle{font-size:0.7rem;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--texte-doux)}
+.form-champ{
+  padding:0.65rem 0.9rem;border:1.5px solid var(--bordure);border-radius:var(--rayon);
+  background:var(--blanc-pur);color:var(--noir);
+  font-family:var(--police);font-size:0.88rem;outline:none;transition:border-color .2s;
+}
+.form-champ:focus{border-color:var(--accent)}
+.form-champ::placeholder{color:var(--texte-doux);opacity:0.55}
+textarea.form-champ{resize:vertical;min-height:110px}
+.form-envoyer{
+  font-size:0.78rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;
+  padding:0.8rem;width:100%;background:var(--noir);color:var(--blanc);
+  border:none;border-radius:var(--rayon);cursor:pointer;transition:background .2s;
+  font-family:var(--police);
+}
+.form-envoyer:hover{background:var(--accent)}
+
+/* ─── PIED DE PAGE ─── */
+footer{
+  background:var(--noir);color:rgba(255,255,255,0.35);
+  padding:1.5rem 3.5rem;
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:0.78rem;
+}
+footer a{color:rgba(255,255,255,0.5);text-decoration:none;transition:color .2s}
+footer a:hover{color:var(--accent)}
+
+/* ─── ANIMATIONS ─── */
+.monte{opacity:0;transform:translateY(24px);transition:opacity .55s ease,transform .55s ease}
+.monte.visible{opacity:1;transform:none}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:960px){
+  .accueil-inner{grid-template-columns:1fr;gap:2.5rem}
+  .photo-cadre{width:100%;max-width:320px;height:320px}
+  .accueil-photo-bloc{align-items:flex-start}
+  .apropos-grille{grid-template-columns:1fr}
+  .stack-grille{grid-template-columns:1fr 1fr}
+  .diplomes-grille{grid-template-columns:1fr}
+  .xp-carte{grid-template-columns:1fr}
+  .contact-grille{grid-template-columns:1fr}
+  nav{padding:1rem 1.5rem}
+  .nav-liens{display:none}
+  .section,.section-full .section-inner,#apropos .section-inner,#diplomes .section-inner{padding:3rem 1.5rem}
+  .accueil-inner{padding:3rem 1.5rem}
+}
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav>
+  <a href="#accueil" class="logo">GF<span>.</span></a>
+  <ul class="nav-liens">
+    <li><a href="#apropos">À propos</a></li>
+    <li><a href="#stack">Stack</a></li>
+    <li><a href="#projets">Projets</a></li>
+    <li><a href="#diplomes">Diplômes</a></li>
+    <li><a href="#certifications">Certifications</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-bouton">Me contacter</a>
+</nav>
+
+<!-- ACCUEIL -->
+<section id="accueil">
+  <div class="accueil-inner">
+    <div class="accueil-texte monte">
+      <div class="etiquette">Développeuse Web — .NET &amp; React</div>
+      <h1 class="accueil-nom">FOUOGUE<br><em>Gabriela.</em></h1>
+      <p class="accueil-titre">Développeuse Full Stack Junior — je conçois des applications web modernes, de l'analyse des besoins à l'intégration des données.</p>
+     <!--  <p class="accueil-objectif">
+        <strong>Objectif :</strong> Rejoindre une équipe ambitieuse pour contribuer à des projets concrets, développer mon expertise fullstack et évoluer vers des responsabilités techniques croissantes.
+      </p>-->
+     
+      <div class="boutons">
+        <a href="#projets" class="btn-plein">Voir mes projets</a>
+        <a href="CV_DOUANLA_GABRIELA.pdf" class="btn-vide" download>Télécharger mon CV</a>
+      </div>
+    </div>
+
+    <div class="accueil-photo-bloc monte">
+      <div class="photo-cadre">
+       <img src="mo.jpeg" alt="Gabriela Fouogue Douanla"/> 
+      <!-- <div class="photo-placeholder">👤</div> -->
+        <p class="photo-hint">photo</p>
+      </div>
+      <div class="photo-badge">
+        <div class="point-vert"></div>
+        Ouverte aux opportunités
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- À PROPOS -->
+<section id="apropos">
+  <div class="section-inner">
+    <div class="apropos-grille">
+      <div class="monte">
+        <div class="etiquette-section">À propos</div>
+        <h2 class="titre-section">Fullstack par conviction,<br>précise par nature.</h2>
+        <div class="apropos-texte">
+          <p>Je suis <strong>Fouogue Douanla Gabriela</strong>, développeuse Full Stack Junior diplômée en Génie Logiciel, spécialisée dans l'écosystème <strong>C#, ASP.NET Core et React.js</strong>.</p>
+          <p>Je développe des applications web de bout en bout, de l'analyse des besoins à l'intégration des données : API, bases de données SQL Server et interfaces modernes et intuitives.</p>
+          <p>Mes expériences en développement web et en support informatique (ITIL) m'ont donné une approche à la fois <strong>technique, orientée utilisateur et axée sur la résolution de problèmes</strong>. Curieuse, rigoureuse et en progression continue, je souhaite contribuer à des projets logiciels concrets dans un environnement technologique exigeant.</p>
+        </div>
+        <!-- <ul class="apropos-liste">
+          <li>Concevoir et déployer des API REST robustes avec ASP.NET Core</li>
+          <li>Construire des interfaces React modernes et réactives</li>
+          <li>Modéliser et interroger des bases de données SQL Server</li>
+          <li>Créer des maquettes et prototypes professionnels avec Figma</li>
+          <li>Analyser les besoins utilisateurs et proposer des solutions adaptées</li>
+        </ul> -->
+      </div>
+      <div class="apropos-cote monte">
+        <div class="info-carte">
+          <div class="info-icone">⚙️</div>
+          <div>
+            <div class="info-libelle">Spécialisation</div>
+            <div class="info-valeur">.NET · React · SQL Server</div>
+          </div>
+        </div>
+        <div class="info-carte">
+          <div class="info-icone">🎨</div>
+          <div>
+            <div class="info-libelle">Outils &amp; Intégration</div>
+            <div class="info-valeur">Figma · UML · Git · GitHub</div>
+          </div>
+        </div>
+        <div class="info-carte">
+          <div class="info-icone">🌍</div>
+          <div>
+            <div class="info-libelle">Localisation</div>
+            <div class="info-valeur">Douala · Cameroun</div>
+          </div>
+        </div>
+        <div class="info-carte">
+          <div class="info-icone">🗣️</div>
+          <div>
+            <div class="info-libelle">Langues</div>
+            <div class="info-valeur">Français (courant) · Anglais (intermédiaire)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STACK TECHNIQUE -->
+<section id="stack" style="background:var(--surface);padding:5rem 3.5rem">
+  <div style="max-width:1200px;margin:0 auto">
+    <div class="etiquette-section">Ma Stack technique</div>
+    <h2 class="titre-section">Mes outils de travail</h2>
+    <p class="sous-titre-section">Un ensemble de technologies que j'utilise pour concevoir et développer des applications web, du front-end au back-end.</p>
+
+    <div class="stack-grille monte">
+
+     
+      <div class="stack-colonne">
+        <div class="stack-colonne-titre">Front-end</div>
+        <div class="tech-liste">
+          <div class="tech-item principal"><span class="tech-puce"></span>React.js</div>
+          <div class="tech-item principal"><span class="tech-puce"></span>Next.js</div>
+          <div class="tech-item principal"><span class="tech-puce"></span>Bootstrap</div>
+             <div class="tech-item principal"><span class="tech-puce"></span>JavaScript</div>
+            <div class="tech-item principal"><span class="tech-puce"></span>HTML5</div>
+          <div class="tech-item principal"><span class="tech-puce"></span>CSS3</div>
+          <div class="tech-item principal"><span class="tech-puce"></span>Tailwind CSS</div>
+          <div class="tech-item"><span class="tech-puce"></span>Vite</div>
+       
+        </div>
+      </div>
+
+       <div class="stack-colonne">
+        <div class="stack-colonne-titre">Back-end</div>
+        <div class="tech-liste">
+          <div class="tech-item principal"><span class="tech-puce"></span>ASP.NET Core</div>
+          <div class="tech-item principal"><span class="tech-puce"></span>C#</div>
+          <div class="tech-item"><span class="tech-puce"></span>Spring Boot</div>
+          <div class="tech-item"><span class="tech-puce"></span>PHP</div>
+          <div class="tech-item principal"><span class="tech-puce"></span>REST API</div>
+          
+       
+        </div>
+      </div>
+
+      <div class="stack-colonne">
+        <div class="stack-colonne-titre">Base de données</div>
+        <div class="tech-liste">
+          <div class="tech-item principal"><span class="tech-puce"></span>SQL Server</div>
+        
+        </div>
+      </div>
+
+      <div class="stack-colonne">
+        <div class="stack-colonne-titre">Outils de développement</div>
+        <div class="tech-liste">
+          <div class="tech-item principal"><span class="tech-puce"></span>Visual Studio </div>
+          <div class="tech-item principal"><span class="tech-puce"></span>Visual Studio Code</div>
+          <div class="tech-item principal"><span class="tech-puce"></span>Git et GitHub</div>
+          <div class="tech-item"><span class="tech-puce"></span>Postman</div>
+          <div class="tech-item"><span class="tech-puce"></span>SQL Server Management Studio</div>
+          
+        </div>
+      </div>
+
+      <div class="stack-colonne">
+        <div class="stack-colonne-titre">Conception, UI/UX & CMS</div>
+        <div class="tech-liste">
+          <div class="tech-item principal"><span class="tech-puce"></span>Figma</div>
+          <div class="tech-item principal"><span class="tech-puce"></span>WordPress</div>
+          <div class="tech-item"><span class="tech-puce"></span>UML</div>
+
+        </div>
+      </div>
+
+    </div>
+    <p style="font-size:0.75rem;color:var(--texte-doux);margin-top:1rem;text-align:right">
+      Les éléments en orange sont mes technologies principales.
+    </p>
+  </div>
+</section>
+
+<!-- PROJETS -->
+<section id="projets" style="background:var(--blanc-pur);padding:5rem 3.5rem">
+  <div style="max-width:1200px;margin:0 auto">
+    <div class="etiquette-section">Projets récents</div>
+    <h2 class="titre-section">Ce que j'ai construit</h2>
+    <p class="sous-titre-section">Des projets concrets, des problèmes réels.Voici quelques applications conçues et développées dans le cadre de ma formation et de mes projets personnels.</p>
+    
+    <div class="projets-grille monte">
+
+      <div class="projet-carte">
+        <div class="projet-en-tete">
+          <div>
+            <div class="projet-numero">01</div>
+          </div>
+        </div>
+        <div class="projet-corps">
+          <div class="projet-nom">SmartAC — Système IoT de supervision et commande à distance des climatiseurs</div>
+          <div class="projet-desc">Plateforme web connectée à des modules ESP32 pour superviser et piloter à distance des climatiseurs. <em>2025 – 2026</em></div>
+          <ul class="projet-taches">
+            <li>Supervision en temps réel de l'état des climatiseurs</li>
+            <li>Commande à distance via l'interface web</li>
+            <li>Gestion du délestage</li>
+            <li>Détection de la source d'alimentation</li>
+            <li>Communication entre les ESP32 et la plateforme web</li>
+            <li>Traçabilité des actions</li>
+          </ul>
+          <div class="projet-desc">Technologies : ESP32 · C# · ASP.NET Core · SQL Server · Next.js</div>
+          <div class="projet-liens">
+            <a href="#" class="lien-btn">GitHub →</a>
+            <a href="#" class="lien-btn">Démonstration →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="projet-carte">
+        <div class="projet-en-tete">
+          <div>
+            <div class="projet-numero">02</div>
+          </div>
+        </div>
+        <div class="projet-corps">
+          <div class="projet-nom">Application web de gestion des congés des employés</div>
+          <div class="projet-desc">Application web de gestion des congés des employés. <em>2024 – 2025</em></div>
+          <div class="projet-desc">Technologies : Spring Boot · React · SQL Server</div>
+          <div class="projet-liens">
+            <a href="#" class="lien-btn">GitHub →</a>
+            <a href="#" class="lien-btn">Démonstration →</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- QUELQUES APPLICATIONS -->
+<section id="applications" style="background:var(--surface);padding:5rem 3.5rem">
+  <div style="max-width:1200px;margin:0 auto">
+    <div class="etiquette-section">Applications réalisées</div>
+    <h2 class="titre-section">Exercices et mini-projets</h2>
+    <p class="sous-titre-section">Des réalisations plus courtes qui illustrent ma progression technique.</p>
+    <div class="apps-grille monte">
+
+      <div class="app-carte">
+        <div class="app-icone">🔐</div>
+        <div class="app-nom">Authentification JWT</div>
+        <div class="app-desc">Mise en place d'un système de connexion sécurisé avec gestion des tokens JSON Web Token.</div>
+        <div class="app-techno">ASP.NET Core · JWT · C#</div>
+      </div>
+
+      <div class="app-carte">
+        <div class="app-icone">📋</div>
+        <div class="app-nom">Formulaire de contact</div>
+        <div class="app-desc">Formulaire web responsive avec validation côté client et intégration back-end pour l'envoi des données.</div>
+        <div class="app-techno">HTML5 · CSS3 · JavaScript</div>
+      </div>
+
+      <div class="app-carte">
+        <div class="app-icone">🌐</div>
+        <div class="app-nom">Site WordPress professionnel</div>
+        <div class="app-desc">Création et personnalisation d'un site WordPress avec thème sur mesure et optimisation des performances.</div>
+        <div class="app-techno">WordPress · CSS3 · Figma</div>
+      </div>
+
+      <div class="app-carte">
+        <div class="app-icone">📊</div>
+        <div class="app-nom">Tableau de bord CRUD</div>
+        <div class="app-desc">Interface d'administration avec opérations CRUD complètes connectée à une base de données SQL Server.</div>
+        <div class="app-techno">C# · SQL Server · HTML5</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- DIPLÔMES -->
+<section id="diplomes">
+  <div class="section-inner">
+    <div class="etiquette-section">Diplômes</div>
+    <h2 class="titre-section">Formation académique</h2>
+    <p class="sous-titre-section" style="color:rgba(255,255,255,0.45)">Mon parcours de formation qui a construit mes bases techniques.</p>
+    <div class="diplomes-grille monte">
+
+       <div class="diplome-carte">
+        <div class="diplome-annee">2025 · 2026</div>
+        <div class="diplome-titre">Licence en Génie Logiciel</div>
+        <div class="diplome-etablissement">Institut Supérieur de Management et de l'Entrepreneuriat (IME), Douala</div>
+        <div class="diplome-detail">Formation approfondie en conception et développement de logiciels, architectures des applications, base de données et gestion de projets informatiques</div>
+      </div>
+
+      <div class="diplome-carte">
+        <div class="diplome-annee">2024 · 2025</div>
+        <div class="diplome-titre">BTS en Génie Logiciel</div>
+        <div class="diplome-etablissement">Institut Supérieur de Management et de l'Entrepreneuriat (IME), Douala</div>
+        <div class="diplome-detail">Formation spécialisée en conception, développement et maitrise des fondamentaux de la programmation, des bases de données et du developpement Web</div>
+      </div>
+
+      <div class="diplome-carte">
+        <div class="diplome-annee">2021 · 2022</div>
+        <div class="diplome-titre">Baccalauréat C</div>
+        <div class="diplome-etablissement">Lycée d'Akwa Nord, Douala</div>
+        <div class="diplome-detail">Formation scientifique axée sur les mathématiques, les sciences physiques et le développement de solides capacités d'analyses et de raisonnement logique</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications" style="padding:5rem 3.5rem">
+  <div style="max-width:1200px;margin:0 auto">
+    <div class="etiquette-section">Certifications</div>
+    <h2 class="titre-section">Reconnaissances professionnelles</h2>
+    <p class="sous-titre-section">Des certifications qui valident mes compétences sur des référentiels reconnus.</p>
+    <div class="certif-grille monte">
+
+      <div class="certif-carte">
+        <div class="certif-organisme">Scrum</div>
+        <div class="certif-nom">Scrum Fundamentals Certified</div>
+        <span class="certif-statut statut-obtenu">✓ Obtenue</span>
+        <div class="certif-desc">Fondamentaux du framework Scrum pour travailler en équipe en mode agile.</div>
+      </div>
+
+      <div class="certif-carte">
+        <div class="certif-organisme">PeopleCert · AXELOS</div>
+        <div class="certif-nom">ITIL 5 Foundation</div>
+        <span class="certif-statut statut-encours">⏳ En cours</span>
+        <div class="certif-desc">Référentiel mondial de gestion des services informatiques — gouvernance et bonnes pratiques IT.</div>
+      </div>
+
+      <div class="certif-carte">
+        <div class="certif-organisme">WEB DEV1</div>
+        <div class="certif-nom">Certification en HTML Essentials</div>
+        <span class="certif-statut statut-obtenu">✓ Obtenue </span>
+        <div class="certif-desc">Maîtrise des bases du HTML pour structurer des pages web modernes et accessibles.</div>
+      </div>
+
+      <div class="certif-carte">
+        <div class="certif-organisme">WEB DEV2</div>
+        <div class="certif-nom">Certification en CSS Essentials</div>
+        <span class="certif-statut statut-obtenu">✓ Obtenue</span>
+        <div class="certif-desc">Maîtrise des fondamentaux du CSS pour concevoir des interfaces web esthétiques et responsives.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EXPÉRIENCE -->
+<section id="experience" style="background:var(--surface);padding:5rem 3.5rem">
+  <div style="max-width:1200px;margin:0 auto">
+    <div class="etiquette-section">Expérience</div>
+    <h2 class="titre-section">Parcours professionnel</h2>
+    <div class="xp-liste monte">
+      <div class="xp-carte">
+        <div class="xp-meta">
+          <div class="xp-org">SECEL Group</div>
+          <div class="xp-periode">2026 – Aujourd'hui</div>
+        </div>
+        <div class="xp-corps">
+          <div class="xp-poste">Développeuse Full Stack Web</div>
+          <ul class="xp-taches">
+            <li>Développement back-end avec C# et ASP.NET Core</li>
+            <li>Développement d'interfaces web avec React.js, HTML5 et CSS3</li>
+            <li>Conception de maquettes et interfaces avec Figma</li>
+            <li>Développement et gestion de sites avec WordPress</li>
+            <li>Gestion des données avec SQL Server</li>
+            <li>Utilisation de Git et GitHub</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="xp-carte">
+        <div class="xp-meta">
+          <div class="xp-org">SECEL Group</div>
+          <div class="xp-periode">2025 – 2026</div>
+        </div>
+        <div class="xp-corps">
+          <div class="xp-poste">Support Informatique</div>
+          <ul class="xp-taches">
+            <li>Résolution d'incidents et support aux utilisateurs</li>
+            <li>Intervention sur des problématiques réseau et gestion des tickets</li>
+            <li>Check matinal à ADIALEA LOGPOM</li>
+            <li>Application des bonnes pratiques ITIL et maintien opérationnel des systèmes IT</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="xp-carte">
+        <div class="xp-meta">
+          <div class="xp-org">GSC SARL</div>
+          <div class="xp-periode">2024 – 2025</div>
+        </div>
+        <div class="xp-corps">
+          <div class="xp-poste">Stagiaire en Développement Logiciel</div>
+          <ul class="xp-taches">
+            <li>Développement de fonctionnalités web avec PHP, HTML5 et CSS3</li>
+            <li>Conception de formulaires web et mise en place de fonctionnalités d'authentification</li>
+            <li>Création d'interfaces responsive avec Bootstrap</li>
+            <li>Modélisation fonctionnelle avec UML (diagrammes de cas d'utilisation)</li>
+            <li>Analyse des besoins et traduction en fonctionnalités applicatives</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" style="padding:5rem 3.5rem">
+  <div style="max-width:1200px;margin:0 auto">
+    <div class="contact-grille">
+      <div class="monte">
+        <div class="etiquette-section">Contact</div>
+        <h2 class="contact-grand">Travaillons<br><em>ensemble.</em></h2>
+        <p class="contact-sous">Une application web à développer? Discutons-en.</p>
+        <div class="contact-liens">
+          <a href="mailto:douanlagabriela@gmail.com" class="contact-element">
+            <div class="contact-icone">✉️</div>
+            <div>
+              <span class="contact-libelle">Adresse électronique</span>
+              <span class="contact-valeur">douanlagabriela@gmail.com</span>
+            </div>
+          </a>
+          <a href="https://www.linkedin.com/in/gabriela-douanla-70aabb408/" class="contact-element" target="_blank" rel="noopener">
+            <div class="contact-icone">💼</div>
+            <div>
+              <span class="contact-libelle">LinkedIn</span>
+              <span class="contact-valeur">Fouogue Douanla Gabriela</span>
+            </div>
+          </a>
+          <a href="https://github.com/" class="contact-element" target="_blank" rel="noopener">
+            <div class="contact-icone">⌨️</div>
+            <div>
+              <span class="contact-libelle">GitHub</span>
+              <span class="contact-valeur">Mon profil GitHub</span>
+            </div>
+          </a>
+          <a href="tel:+237653212908" class="contact-element">
+            <div class="contact-icone">📞</div>
+            <div>
+              <span class="contact-libelle">Téléphone</span>
+              <span class="contact-valeur">653 212 908</span>
+            </div>
+          </a>
+          <a href="CV_DOUANLA_GABRIELA.pdf" class="contact-element" download>
+            <div class="contact-icone">📄</div>
+            <div>
+              <span class="contact-libelle">Curriculum Vitae</span>
+              <span class="contact-valeur">Télécharger mon CV en PDF</span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="monte">
+        <div style="font-size:0.85rem;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;color:var(--texte-doux);margin-bottom:1.2rem">Envoyer un message</div>
+        <form class="formulaire" onsubmit="envoyerMessage(event)">
+          <div class="form-rang">
+            <div class="form-groupe">
+              <label class="form-libelle">Prénom</label>
+              <input class="form-champ" type="text" placeholder="Jean"/>
+            </div>
+            <div class="form-groupe">
+              <label class="form-libelle">Nom</label>
+              <input class="form-champ" type="text" placeholder="Dupont"/>
+            </div>
+          </div>
+          <div class="form-groupe">
+            <label class="form-libelle">Adresse électronique</label>
+            <input class="form-champ" type="email" placeholder="jean@exemple.com"/>
+          </div>
+          <div class="form-groupe">
+            <label class="form-libelle">Sujet</label>
+            <input class="form-champ" type="text" placeholder="Proposition de collaboration, projet..."/>
+          </div>
+          <div class="form-groupe">
+            <label class="form-libelle">Message</label>
+            <textarea class="form-champ" placeholder="Bonjour Gabriela, je souhaite..."></textarea>
+          </div>
+          <button type="submit" class="form-envoyer">Envoyer le message →</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PIED DE PAGE -->
+<footer>
+  <span>© 2026 Fouogue Douanla Gabriela — Développeuse Full Stack Junior</span>
+  <div style="display:flex;gap:1.5rem">
+    <a href="mailto:douanlagabriela@gmail.com">Email</a>
+    <a href="https://www.linkedin.com/in/gabriela-douanla-70aabb408/" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
+  </div>
+</footer>
+
+<script>
+const observateur = new IntersectionObserver(entrees => {
+  entrees.forEach(e => {
+    if(e.isIntersecting){
+      const elements = e.target.parentElement?.querySelectorAll('.monte') || [e.target];
+      [...elements].forEach((el, i) => setTimeout(() => el.classList.add('visible'), i * 100));
+      observateur.unobserve(e.target);
+    }
+  });
+}, {threshold: 0.08});
+
+document.querySelectorAll('.monte').forEach(el => observateur.observe(el));
+
+function envoyerMessage(e){
+  e.preventDefault();
+  const btn = e.target.querySelector('.form-envoyer');
+  btn.textContent = 'Message envoyé ✓';
+  btn.style.background = '#2E7D32';
+  setTimeout(() => {
+    btn.textContent = 'Envoyer le message →';
+    btn.style.background = '';
+    e.target.reset();
+  }, 3000);
+}
+</script>
+</body>
+</html>
