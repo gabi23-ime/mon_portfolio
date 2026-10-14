@@ -2,9 +2,11 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<meta name="theme-color" content="#FAFAF8"/>
 <title>Fouogue Douanla Gabriela — Développeuse Full Stack Junior</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -20,17 +22,21 @@
   --blanc-pur:#FFFFFF;
   --police:'Plus Jakarta Sans',sans-serif;
   --rayon:6px;
+  --g:max(3.5rem,env(safe-area-inset-left,0px),env(safe-area-inset-right,0px)); /* marges latérales */
+  --v:5rem; /* marges verticales des sections */
 }
-html{scroll-behavior:smooth}
-body{font-family:var(--police);background:var(--blanc);color:var(--noir);font-size:15px;line-height:1.7;overflow-x:hidden}
+html{scroll-behavior:smooth;scroll-padding-top:4.5rem;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+img{max-width:100%}
+.accueil-inner>*,.apropos-grille>*,.contact-grille>*,.xp-carte>*,.projet-carte,.app-carte,.certif-carte,.stack-colonne,.diplome-carte{min-width:0}
+body{font-family:var(--police);background:var(--blanc);color:var(--noir);font-size:15px;line-height:1.7;overflow-x:hidden;overflow-wrap:break-word}
 
 /* ─── NAVIGATION ─── */
 nav{
   position:fixed;top:0;left:0;right:0;z-index:200;
   display:flex;align-items:center;justify-content:space-between;
-  padding:1rem 3.5rem;
+  padding:1rem var(--g);
   background:rgba(250,250,248,0.92);
-  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
   border-bottom:1px solid var(--bordure);
 }
 .logo{font-size:1rem;font-weight:800;letter-spacing:-0.01em;color:var(--noir);text-decoration:none}
@@ -44,16 +50,26 @@ nav{
   border:none;border-radius:var(--rayon);text-decoration:none;transition:background .2s;
 }
 .nav-bouton:hover{background:var(--accent)}
+.burger{
+  display:none;width:44px;height:44px;margin-right:-0.5rem;
+  background:transparent;border:none;cursor:pointer;
+  align-items:center;justify-content:center;flex-direction:column;gap:5px;
+  -webkit-tap-highlight-color:transparent;
+}
+.burger span{display:block;width:22px;height:2px;background:var(--noir);border-radius:2px;transition:transform .25s,opacity .2s}
+nav.ouvert .burger span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+nav.ouvert .burger span:nth-child(2){opacity:0}
+nav.ouvert .burger span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 
 /* ─── ACCUEIL ─── */
 #accueil{
-  min-height:100vh;padding-top:5rem;
+  min-height:100vh;min-height:100svh;padding-top:5rem;
   display:flex;align-items:center;
   background:var(--blanc);
 }
 .accueil-inner{
   width:100%;max-width:1200px;margin:0 auto;
-  padding:4rem 3.5rem;
+  padding:4rem var(--g);
   display:grid;grid-template-columns:1fr 400px;gap:5rem;align-items:center;
 }
 .accueil-texte{}
@@ -104,7 +120,7 @@ nav{
 /* photo côté droit */
 .accueil-photo-bloc{display:flex;flex-direction:column;align-items:center;gap:1.2rem}
 .photo-cadre{
-  width:340px;height:400px;
+  width:340px;height:400px;max-width:100%;
   border-radius:12px;overflow:hidden;
   border:1px solid var(--bordure);
   background:var(--surface);
@@ -130,9 +146,11 @@ nav{
 @keyframes clignoter{0%,100%{opacity:1}50%{opacity:0.3}}
 
 /* ─── SECTION COMMUNE ─── */
-.section{padding:5rem 3.5rem;max-width:1200px;margin:0 auto}
-.section-full{padding:5rem 0}
-.section-full .section-inner{max-width:1200px;margin:0 auto;padding:0 3.5rem}
+.section{padding:var(--v) var(--g);max-width:1200px;margin:0 auto}
+.section-full{padding:var(--v) 0}
+.bloc{padding:var(--v) var(--g)}
+.bloc-inner{max-width:1200px;margin:0 auto}
+.section-full .section-inner{max-width:1200px;margin:0 auto;padding:0 var(--g)}
 .etiquette-section{
   font-size:0.7rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;
   color:var(--accent);display:flex;align-items:center;gap:0.6rem;margin-bottom:0.8rem;
@@ -149,8 +167,8 @@ nav{
 }
 
 /* ─── À PROPOS ─── */
-#apropos{background:var(--blanc-pur);padding:5rem 0}
-#apropos .section-inner{max-width:1200px;margin:0 auto;padding:0 3.5rem}
+#apropos{background:var(--blanc-pur);padding:var(--v) 0}
+#apropos .section-inner{max-width:1200px;margin:0 auto;padding:0 var(--g)}
 .apropos-grille{display:grid;grid-template-columns:1.1fr 0.9fr;gap:5rem;align-items:start}
 .apropos-texte p{
   font-size:0.97rem;font-weight:400;color:var(--noir);opacity:0.78;
@@ -216,7 +234,7 @@ nav{
 
 /* ─── PROJETS ─── */
 #projets{background:var(--blanc-pur)}
-.projets-grille{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.5rem;margin-top:2.5rem}
+.projets-grille{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:1.5rem;margin-top:2.5rem}
 .projet-carte{
   border:1px solid var(--bordure);border-radius:10px;overflow:hidden;
   background:var(--blanc-pur);transition:transform .2s,box-shadow .2s;
@@ -229,6 +247,23 @@ nav{
   display:flex;justify-content:space-between;align-items:flex-start;
 }
 .projet-numero{font-size:2rem;font-weight:800;color:var(--bordure);line-height:1;font-family:var(--police)}
+/* bannière image des projets */
+.projet-en-tete.avec-visuel{
+  position:relative;overflow:hidden;aspect-ratio:16/9;
+  padding:1.1rem 1.4rem;align-items:flex-end;background:var(--noir);
+}
+.projet-visuel{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;object-position:top center;display:block;
+  transition:transform .5s ease;
+}
+.projet-en-tete.avec-visuel::after{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(to top,rgba(17,17,16,0.72) 0%,rgba(17,17,16,0) 55%);
+}
+.projet-en-tete.avec-visuel>div{position:relative;z-index:1}
+.projet-en-tete.avec-visuel .projet-numero{color:#fff;text-shadow:0 2px 12px rgba(0,0,0,0.45)}
+@media(hover:hover){.projet-carte:hover .projet-visuel{transform:scale(1.04)}}
 .projet-technos{display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:0.5rem}
 .techno-badge{
   font-size:0.7rem;font-weight:700;letter-spacing:0.03em;
@@ -247,7 +282,7 @@ nav{
 }
 .projet-taches li::before{content:'›';color:var(--accent);font-weight:700}
 .projet-taches li:last-child{border-bottom:none}
-.projet-liens{display:flex;gap:0.6rem}
+.projet-liens{display:flex;flex-wrap:wrap;gap:0.6rem}
 .lien-btn{
   font-size:0.75rem;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;
   padding:0.4rem 0.9rem;border:1.5px solid var(--bordure);border-radius:var(--rayon);
@@ -257,7 +292,7 @@ nav{
 
 /* ─── APPLICATIONS ─── */
 #applications{background:var(--surface)}
-.apps-grille{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;margin-top:2.5rem}
+.apps-grille{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:1rem;margin-top:2.5rem}
 .app-carte{
   background:var(--blanc-pur);border:1px solid var(--bordure);border-radius:10px;
   padding:1.5rem;transition:all .2s;
@@ -274,7 +309,7 @@ nav{
 
 /* ─── DIPLÔMES ─── */
 #diplomes{background:var(--noir);color:var(--blanc)}
-#diplomes .section-inner{max-width:1200px;margin:0 auto;padding:5rem 3.5rem}
+#diplomes .section-inner{max-width:1200px;margin:0 auto;padding:var(--v) var(--g)}
 #diplomes .etiquette-section{color:var(--accent)}
 #diplomes .etiquette-section::after{background:rgba(255,255,255,0.12)}
 #diplomes .titre-section{color:var(--blanc)}
@@ -301,7 +336,7 @@ nav{
 
 /* ─── CERTIFICATIONS ─── */
 #certifications{background:var(--blanc-pur)}
-.certif-grille{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;margin-top:2.5rem}
+.certif-grille{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:1rem;margin-top:2.5rem}
 .certif-carte{
   border:1px solid var(--bordure);border-radius:10px;padding:1.5rem;
   background:var(--blanc-pur);transition:all .2s;
@@ -364,7 +399,8 @@ nav{
   display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;transition:background .2s;
 }
 .contact-libelle{font-size:0.68rem;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;opacity:0.5;display:block}
-.contact-valeur{font-size:0.88rem;font-weight:600}
+.contact-valeur{font-size:0.88rem;font-weight:600;overflow-wrap:anywhere}
+.contact-element>div{min-width:0}
 /* formulaire */
 .formulaire{display:flex;flex-direction:column;gap:0.9rem}
 .form-rang{display:grid;grid-template-columns:1fr 1fr;gap:0.9rem}
@@ -389,8 +425,8 @@ textarea.form-champ{resize:vertical;min-height:110px}
 /* ─── PIED DE PAGE ─── */
 footer{
   background:var(--noir);color:rgba(255,255,255,0.35);
-  padding:1.5rem 3.5rem;
-  display:flex;justify-content:space-between;align-items:center;
+  padding:1.5rem var(--g);
+  display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;
   font-size:0.78rem;
 }
 footer a{color:rgba(255,255,255,0.5);text-decoration:none;transition:color .2s}
@@ -401,28 +437,121 @@ footer a:hover{color:var(--accent)}
 .monte.visible{opacity:1;transform:none}
 
 /* ─── RESPONSIVE ─── */
+
+/* très grands écrans */
+@media(min-width:1600px){
+  body{font-size:16px}
+  .accueil-inner,.section,.bloc-inner,.section-full .section-inner,#apropos .section-inner,#diplomes .section-inner{max-width:1360px}
+}
+
+/* petits ordinateurs, iPad paysage */
+@media(max-width:1100px){
+  :root{--g:max(2.5rem,env(safe-area-inset-left,0px),env(safe-area-inset-right,0px));--v:4rem}
+  .accueil-inner{grid-template-columns:1fr 320px;gap:3rem}
+  .photo-cadre{width:100%;height:auto;aspect-ratio:17/20}
+  .apropos-grille,.contact-grille{gap:3rem}
+  .stack-grille{grid-template-columns:repeat(3,1fr)}
+  .nav-liens{gap:1.4rem}
+}
+
+/* tablettes (iPad portrait) et téléphones : menu burger */
 @media(max-width:960px){
-  .accueil-inner{grid-template-columns:1fr;gap:2.5rem}
-  .photo-cadre{width:100%;max-width:320px;height:320px}
+  :root{--g:max(1.5rem,env(safe-area-inset-left,0px),env(safe-area-inset-right,0px));--v:3.5rem}
+  .accueil-inner{grid-template-columns:1fr;gap:2.5rem;padding-top:2.5rem;padding-bottom:3rem}
+  .photo-cadre{width:100%;max-width:340px;height:auto;aspect-ratio:17/20}
   .accueil-photo-bloc{align-items:flex-start}
-  .apropos-grille{grid-template-columns:1fr}
+  .apropos-grille{grid-template-columns:1fr;gap:2.5rem}
   .stack-grille{grid-template-columns:1fr 1fr}
   .diplomes-grille{grid-template-columns:1fr}
-  .xp-carte{grid-template-columns:1fr}
-  .contact-grille{grid-template-columns:1fr}
-  nav{padding:1rem 1.5rem}
-  .nav-liens{display:none}
-  .section,.section-full .section-inner,#apropos .section-inner,#diplomes .section-inner{padding:3rem 1.5rem}
-  .accueil-inner{padding:3rem 1.5rem}
+  .xp-carte{grid-template-columns:1fr;gap:0.8rem}
+  .contact-grille{grid-template-columns:1fr;gap:2.5rem}
+  .contact-sous{max-width:none}
+
+  .nav-bouton{display:none}
+  .burger{display:inline-flex}
+  .nav-liens{
+    display:none;position:absolute;top:100%;left:0;right:0;
+    flex-direction:column;gap:0;
+    padding:0.3rem var(--g) 1rem;
+    background:var(--blanc);
+    border-bottom:1px solid var(--bordure);
+    box-shadow:0 12px 24px rgba(0,0,0,0.06);
+    max-height:calc(100vh - 4rem);max-height:calc(100dvh - 4rem);overflow-y:auto;
+  }
+  nav.ouvert .nav-liens{display:flex}
+  .nav-liens a{display:block;padding:1rem 0;font-size:0.88rem;border-bottom:1px solid var(--surface)}
+  .nav-liens li:last-child a{border-bottom:none}
+}
+
+/* téléphones */
+@media(max-width:600px){
+  :root{--v:3rem}
+  body{font-size:14.5px}
+  nav{padding-top:0.7rem;padding-bottom:0.7rem}
+  #accueil{padding-top:4.2rem}
+  .accueil-inner{padding-top:2rem}
+  .accueil-titre{margin-bottom:1.5rem}
+  .boutons{flex-direction:column;gap:0.7rem}
+  .btn-plein,.btn-vide{width:100%;text-align:center;padding:0.9rem 1.2rem}
+  .photo-cadre{max-width:none}
+  .photo-badge{font-size:0.68rem}
+  .stack-grille{grid-template-columns:1fr}
+  .stack-colonne{padding:1.4rem 1.2rem}
+  .tech-liste{flex-direction:row;flex-wrap:wrap}
+  .info-carte{padding:1rem 1.1rem}
+  .projet-en-tete{padding:1.2rem 1.3rem 0.8rem}
+  .projet-corps{padding:1.2rem 1.3rem}
+  .xp-carte{padding:1.3rem}
+  .diplome-carte,.certif-carte,.app-carte{padding:1.3rem}
+  .form-rang{grid-template-columns:1fr}
+  .form-champ{font-size:16px;padding:0.8rem 0.9rem} /* 16px = pas de zoom automatique sur iPhone */
+  .form-envoyer{padding:1rem}
+  .lien-btn{padding:0.6rem 1rem}
+  footer{flex-direction:column;text-align:center;justify-content:center}
+}
+
+/* très petits téléphones (iPhone SE, anciens Android) */
+@media(max-width:380px){
+  :root{--g:max(1.1rem,env(safe-area-inset-left,0px),env(safe-area-inset-right,0px))}
+  .accueil-nom{font-size:2.2rem}
+  .titre-section{font-size:1.5rem}
+  .etiquette{letter-spacing:0.08em}
+}
+
+/* téléphones en mode paysage (peu de hauteur) */
+@media(max-height:480px) and (orientation:landscape){
+  #accueil{min-height:auto}
+  .photo-cadre{max-width:240px}
+}
+
+/* écrans tactiles : pas d'effets de survol « collés » */
+@media(hover:none){
+  .projet-carte:hover,.app-carte:hover{transform:none;box-shadow:none}
+  .app-carte:hover,.certif-carte:hover,.xp-carte:hover{border-color:var(--bordure)}
+  .tech-item:hover{background:var(--surface);color:var(--noir);border-color:transparent}
+  .tech-item:hover .tech-puce{background:var(--bordure)}
+  .tech-item.principal:hover .tech-puce{background:var(--accent)}
+  .contact-element:hover{background:var(--surface);color:var(--noir);border-color:var(--bordure)}
+  .contact-element:hover .contact-icone{background:var(--blanc-pur)}
+  .btn-plein:hover{background:var(--noir);border-color:var(--noir)}
+  .nav-liens a,.btn-plein,.btn-vide,.lien-btn,.contact-element{-webkit-tap-highlight-color:rgba(191,75,31,0.15)}
+}
+
+/* respect du réglage « réduire les animations » */
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .monte{opacity:1;transform:none}
 }
 </style>
+<noscript><style>.monte{opacity:1;transform:none}</style></noscript>
 </head>
 <body>
 
 <!-- NAVIGATION -->
 <nav>
   <a href="#accueil" class="logo">GF<span>.</span></a>
-  <ul class="nav-liens">
+  <ul class="nav-liens" id="menu-principal">
     <li><a href="#apropos">À propos</a></li>
     <li><a href="#stack">Stack</a></li>
     <li><a href="#projets">Projets</a></li>
@@ -431,6 +560,9 @@ footer a:hover{color:var(--accent)}
     <li><a href="#contact">Contact</a></li>
   </ul>
   <a href="#contact" class="nav-bouton">Me contacter</a>
+  <button class="burger" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu-principal">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
 <!-- ACCUEIL -->
@@ -452,9 +584,8 @@ footer a:hover{color:var(--accent)}
 
     <div class="accueil-photo-bloc monte">
       <div class="photo-cadre">
-       <img src="mo.jpeg" alt="Gabriela Fouogue Douanla"/> 
+       <img src="mo.jpeg" alt="Gabriela Fouogue Douanla" decoding="async"/> 
       <!-- <div class="photo-placeholder">👤</div> -->
-        <p class="photo-hint">photo</p>
       </div>
       <div class="photo-badge">
         <div class="point-vert"></div>
@@ -519,8 +650,8 @@ footer a:hover{color:var(--accent)}
 </section>
 
 <!-- STACK TECHNIQUE -->
-<section id="stack" style="background:var(--surface);padding:5rem 3.5rem">
-  <div style="max-width:1200px;margin:0 auto">
+<section id="stack" class="bloc" style="background:var(--surface)">
+  <div class="bloc-inner">
     <div class="etiquette-section">Ma Stack technique</div>
     <h2 class="titre-section">Mes outils de travail</h2>
     <p class="sous-titre-section">Un ensemble de technologies que j'utilise pour concevoir et développer des applications web, du front-end au back-end.</p>
@@ -594,8 +725,8 @@ footer a:hover{color:var(--accent)}
 </section>
 
 <!-- PROJETS -->
-<section id="projets" style="background:var(--blanc-pur);padding:5rem 3.5rem">
-  <div style="max-width:1200px;margin:0 auto">
+<section id="projets" class="bloc" style="background:var(--blanc-pur)">
+  <div class="bloc-inner">
     <div class="etiquette-section">Projets récents</div>
     <h2 class="titre-section">Ce que j'ai construit</h2>
     <p class="sous-titre-section">Des projets concrets, des problèmes réels.Voici quelques applications conçues et développées dans le cadre de ma formation et de mes projets personnels.</p>
@@ -603,7 +734,8 @@ footer a:hover{color:var(--accent)}
     <div class="projets-grille monte">
 
       <div class="projet-carte">
-        <div class="projet-en-tete">
+        <div class="projet-en-tete avec-visuel">
+          <img class="projet-visuel" src="images/smartac.webp" alt="Aperçu du tableau de bord SmartAC" width="945" height="640" loading="lazy" decoding="async"/>
           <div>
             <div class="projet-numero">01</div>
           </div>
@@ -620,10 +752,7 @@ footer a:hover{color:var(--accent)}
             <li>Traçabilité des actions</li>
           </ul>
           <div class="projet-desc">Technologies : ESP32 · C# · ASP.NET Core · SQL Server · Next.js</div>
-          <div class="projet-liens">
-            <a href="#" class="lien-btn">GitHub →</a>
-            <a href="#" class="lien-btn">Démonstration →</a>
-          </div>
+          <div class="projet-desc">Déploiement : serveurs de SECEL Group (usage interne)</div>
         </div>
       </div>
 
@@ -644,13 +773,78 @@ footer a:hover{color:var(--accent)}
         </div>
       </div>
 
+      <div class="projet-carte">
+        <div class="projet-en-tete avec-visuel">
+          <img class="projet-visuel" src="images/diff.webp" alt="Page d'accueil du site du Douala International Film Festival" width="1200" height="646" loading="lazy" decoding="async"/>
+          <div>
+            <div class="projet-numero">03</div>
+          </div>
+        </div>
+        <div class="projet-corps">
+          <div class="projet-nom">Site web du Douala International Film Festival</div>
+          <div class="projet-desc">Site web du <strong>Douala International Film Festival (DIFF)</strong>, réalisé pour <strong>Cinepeople</strong> : présentation du festival, appels à candidatures (films, formations, projets), dossiers à fournir et contact.</div>
+          <div class="projet-desc">Déploiement : Vercel</div>
+          <div class="projet-liens">
+            <a href="https://cinepeoplegithubio.vercel.app/" class="lien-btn" target="_blank" rel="noopener">Voir le site →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="projet-carte">
+        <div class="projet-en-tete avec-visuel">
+          <img class="projet-visuel" src="images/vote-universitaire.webp" alt="Page d'accueil de la plateforme VoteSecure" width="1200" height="644" loading="lazy" decoding="async"/>
+          <div>
+            <div class="projet-numero">04</div>
+          </div>
+        </div>
+        <div class="projet-corps">
+          <div class="projet-nom">Application de gestion de vote universitaire</div>
+          <div class="projet-desc">Plateforme de vote électronique sécurisé pour les élections internes de l'université, remplaçant les bulletins papier. Projet académique 2025 – 2026 (IME), réalisé en équipe.</div>
+          <ul class="projet-taches">
+            <li>Anonymat garanti par la séparation architecturale de la base de données</li>
+            <li>Chiffrement RSA 2048 des bulletins et reçu de vote vérifiable (hash SHA-256)</li>
+            <li>Authentification JWT à double jeton, CAPTCHA et contrôle d'éligibilité côté serveur</li>
+            <li>Espace public, espace électeur et back-office administrateur avec résultats en temps réel</li>
+            <li>Journaux d'audit chaînés (SHA-256)</li>
+            <li>46 tests automatisés (100 % de réussite, 77 % de couverture)</li>
+          </ul>
+          <div class="projet-desc">Technologies : React · TypeScript · Vite · Tailwind CSS · Django REST Framework · PostgreSQL · Redis</div>
+          <div class="projet-desc">Déploiement : Vercel (front) · Render (API) · Docker · CI/CD GitHub Actions</div>
+          <div class="projet-liens">
+            <a href="https://gestion-vote.vercel.app/" class="lien-btn" target="_blank" rel="noopener">Voir l'application →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="projet-carte">
+        <div class="projet-en-tete avec-visuel">
+          <img class="projet-visuel" src="images/enquete-itil5.webp" alt="Questionnaire de satisfaction ITIL 5 de SECEL" width="1200" height="659" loading="lazy" decoding="async"/>
+          <div>
+            <div class="projet-numero">05</div>
+          </div>
+        </div>
+        <div class="projet-corps">
+          <div class="projet-nom">Enquête de satisfaction — lancement ITIL 5</div>
+          <div class="projet-desc">Questionnaire électronique diffusé aux participants du lancement ITIL 5 de SECEL Group (Krystal Palace, Douala, 23 juin 2026) pour mesurer leur satisfaction et leur intérêt pour ITIL 5.</div>
+          <ul class="projet-taches">
+            <li>16 questions : profil, satisfaction globale, mesure de la demande, recommandation</li>
+            <li>Notation par étoiles et échelles de 1 à 10</li>
+            <li>Suivi de la progression et message de remerciement après l'envoi</li>
+          </ul>
+          <div class="projet-desc">Déploiement : Vercel</div>
+          <div class="projet-liens">
+            <a href="https://projet-tutore-zssn.vercel.app/" class="lien-btn" target="_blank" rel="noopener">Voir l'enquête →</a>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
 
 <!-- QUELQUES APPLICATIONS -->
-<section id="applications" style="background:var(--surface);padding:5rem 3.5rem">
-  <div style="max-width:1200px;margin:0 auto">
+<section id="applications" class="bloc" style="background:var(--surface)">
+  <div class="bloc-inner">
     <div class="etiquette-section">Applications réalisées</div>
     <h2 class="titre-section">Exercices et mini-projets</h2>
     <p class="sous-titre-section">Des réalisations plus courtes qui illustrent ma progression technique.</p>
@@ -722,8 +916,8 @@ footer a:hover{color:var(--accent)}
 </section>
 
 <!-- CERTIFICATIONS -->
-<section id="certifications" style="padding:5rem 3.5rem">
-  <div style="max-width:1200px;margin:0 auto">
+<section id="certifications" class="bloc">
+  <div class="bloc-inner">
     <div class="etiquette-section">Certifications</div>
     <h2 class="titre-section">Reconnaissances professionnelles</h2>
     <p class="sous-titre-section">Des certifications qui valident mes compétences sur des référentiels reconnus.</p>
@@ -762,8 +956,8 @@ footer a:hover{color:var(--accent)}
 </section>
 
 <!-- EXPÉRIENCE -->
-<section id="experience" style="background:var(--surface);padding:5rem 3.5rem">
-  <div style="max-width:1200px;margin:0 auto">
+<section id="experience" class="bloc" style="background:var(--surface)">
+  <div class="bloc-inner">
     <div class="etiquette-section">Expérience</div>
     <h2 class="titre-section">Parcours professionnel</h2>
     <div class="xp-liste monte">
@@ -823,15 +1017,15 @@ footer a:hover{color:var(--accent)}
 </section>
 
 <!-- CONTACT -->
-<section id="contact" style="padding:5rem 3.5rem">
-  <div style="max-width:1200px;margin:0 auto">
+<section id="contact" class="bloc">
+  <div class="bloc-inner">
     <div class="contact-grille">
       <div class="monte">
         <div class="etiquette-section">Contact</div>
         <h2 class="contact-grand">Travaillons<br><em>ensemble.</em></h2>
         <p class="contact-sous">Une application web à développer? Discutons-en.</p>
         <div class="contact-liens">
-          <a href="mailto:douanlagabriela@gmail.com" class="contact-element">
+          <a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=douanlagabriela@gmail.com" class="contact-element" target="_blank" rel="noopener">
             <div class="contact-icone">✉️</div>
             <div>
               <span class="contact-libelle">Adresse électronique</span>
@@ -874,25 +1068,25 @@ footer a:hover{color:var(--accent)}
         <form class="formulaire" onsubmit="envoyerMessage(event)">
           <div class="form-rang">
             <div class="form-groupe">
-              <label class="form-libelle">Prénom</label>
-              <input class="form-champ" type="text" placeholder="Jean"/>
+              <label class="form-libelle" for="f-prenom">Prénom</label>
+              <input class="form-champ" id="f-prenom" name="prenom" type="text" placeholder="Jean" autocomplete="given-name" required/>
             </div>
             <div class="form-groupe">
-              <label class="form-libelle">Nom</label>
-              <input class="form-champ" type="text" placeholder="Dupont"/>
+              <label class="form-libelle" for="f-nom">Nom</label>
+              <input class="form-champ" id="f-nom" name="nom" type="text" placeholder="Dupont" autocomplete="family-name"/>
             </div>
           </div>
           <div class="form-groupe">
-            <label class="form-libelle">Adresse électronique</label>
-            <input class="form-champ" type="email" placeholder="jean@exemple.com"/>
+            <label class="form-libelle" for="f-email">Adresse électronique</label>
+            <input class="form-champ" id="f-email" name="email" type="email" placeholder="jean@exemple.com" autocomplete="email" required/>
           </div>
           <div class="form-groupe">
-            <label class="form-libelle">Sujet</label>
-            <input class="form-champ" type="text" placeholder="Proposition de collaboration, projet..."/>
+            <label class="form-libelle" for="f-sujet">Sujet</label>
+            <input class="form-champ" id="f-sujet" name="sujet" type="text" placeholder="Proposition de collaboration, projet..."/>
           </div>
           <div class="form-groupe">
-            <label class="form-libelle">Message</label>
-            <textarea class="form-champ" placeholder="Bonjour Gabriela, je souhaite..."></textarea>
+            <label class="form-libelle" for="f-message">Message</label>
+            <textarea class="form-champ" id="f-message" name="message" placeholder="Bonjour Gabriela, je souhaite..." required></textarea>
           </div>
           <button type="submit" class="form-envoyer">Envoyer le message →</button>
         </form>
@@ -905,14 +1099,36 @@ footer a:hover{color:var(--accent)}
 <footer>
   <span>© 2026 Fouogue Douanla Gabriela — Développeuse Full Stack Junior</span>
   <div style="display:flex;gap:1.5rem">
-    <a href="mailto:douanlagabriela@gmail.com">Email</a>
+    <a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=douanlagabriela@gmail.com" target="_blank" rel="noopener">Email</a>
     <a href="https://www.linkedin.com/in/gabriela-douanla-70aabb408/" target="_blank" rel="noopener">LinkedIn</a>
     <a href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
   </div>
 </footer>
 
 <script>
-const observateur = new IntersectionObserver(entrees => {
+/* menu mobile */
+const nav = document.querySelector('nav');
+const burger = nav.querySelector('.burger');
+function fermerMenu(){
+  nav.classList.remove('ouvert');
+  burger.setAttribute('aria-expanded','false');
+  burger.setAttribute('aria-label','Ouvrir le menu');
+}
+burger.addEventListener('click', () => {
+  const ouvert = nav.classList.toggle('ouvert');
+  burger.setAttribute('aria-expanded', ouvert);
+  burger.setAttribute('aria-label', ouvert ? 'Fermer le menu' : 'Ouvrir le menu');
+});
+nav.querySelectorAll('.nav-liens a').forEach(a => a.addEventListener('click', fermerMenu));
+document.addEventListener('keydown', e => { if(e.key === 'Escape') fermerMenu(); });
+document.addEventListener('click', e => { if(!nav.contains(e.target)) fermerMenu(); });
+window.addEventListener('resize', () => { if(window.innerWidth > 960) fermerMenu(); });
+
+/* apparition au défilement (affichage direct si non supporté) */
+if(!('IntersectionObserver' in window)){
+  document.querySelectorAll('.monte').forEach(el => el.classList.add('visible'));
+}
+const observateur = !('IntersectionObserver' in window) ? {observe(){},unobserve(){}} : new IntersectionObserver(entrees => {
   entrees.forEach(e => {
     if(e.isIntersecting){
       const elements = e.target.parentElement?.querySelectorAll('.monte') || [e.target];
@@ -926,14 +1142,24 @@ document.querySelectorAll('.monte').forEach(el => observateur.observe(el));
 
 function envoyerMessage(e){
   e.preventDefault();
-  const btn = e.target.querySelector('.form-envoyer');
-  btn.textContent = 'Message envoyé ✓';
-  btn.style.background = '#2E7D32';
-  setTimeout(() => {
-    btn.textContent = 'Envoyer le message →';
-    btn.style.background = '';
-    e.target.reset();
-  }, 3000);
+  const f = e.target;
+  const v = n => f.elements[n].value.trim();
+  const nomComplet = [v('prenom'), v('nom')].filter(Boolean).join(' ');
+  const sujet = v('sujet') || 'Contact depuis votre portfolio';
+  const corps =
+    v('message') +
+    '\n\n— ' + nomComplet +
+    '\nEmail : ' + v('email');
+  /* ouvre directement la fenêtre de rédaction Gmail */
+  const url = 'https://mail.google.com/mail/?view=cm&fs=1' +
+    '&to=douanlagabriela@gmail.com' +
+    '&su=' + encodeURIComponent(sujet) +
+    '&body=' + encodeURIComponent(corps);
+  const fenetre = window.open(url, '_blank', 'noopener');
+  if(!fenetre) window.location.href = url; /* si le navigateur bloque la nouvelle fenêtre */
+  const btn = f.querySelector('.form-envoyer');
+  btn.textContent = 'Ouverture de Gmail…';
+  setTimeout(() => { btn.textContent = 'Envoyer le message →'; }, 4000);
 }
 </script>
 </body>
